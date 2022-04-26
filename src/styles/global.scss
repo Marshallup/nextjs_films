@@ -1,0 +1,20 @@
+html {
+    font-size: 62.5%;
+}
+body {
+    font-family: 'Gilroy';
+    font-weight: 400;
+    background-color: #3a3a3a;
+    font-size: 1.6rem;
+    // padding-top: 28rem;
+}
+.main {
+    &-section {
+        &-first {
+            padding-top: 80px;
+        }
+    }
+}
+.body-header-anim-complete {
+    padding-top: 0;
+}
