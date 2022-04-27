@@ -21,7 +21,6 @@ interface TabComponentProps {
 const TabComponent: FC<TabComponentProps> = ({ children, data = tabs, onChange = () => {} }) => {
     const [activeTabIndex, setActiveTabIndex] = useState(0);
 
-    console.log(children, 'children')
     function onChangeTab(index: number) {
         if (activeTabIndex !== index) {
             setActiveTabIndex(index);

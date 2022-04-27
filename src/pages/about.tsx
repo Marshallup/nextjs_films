@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import MainTabs from 'components/MainTabs';
+import MainPromoTabs from 'components/MainPromoTabs';
 
 const About: NextPage = () => {
 
@@ -9,14 +9,14 @@ const About: NextPage = () => {
 
     return (
         <>
-            <MainTabs activeID={1} onChange={onChangeTab}>
-                <MainTabs.MainTab id={1} name="name tab 1">
+            {/* <MainPromoTabs activeID={1} onChange={onChangeTab}>
+                <MainPromoTabs.MainPromoTab id={1} name="name tab 1">
                     tab1
-                </MainTabs.MainTab>
-                <MainTabs.MainTab id={2} name="name tab 2">
+                </MainPromoTabs.MainPromoTab>
+                <MainPromoTabs.MainPromoTab id={2} name="name tab 2">
                     tab23
-                </MainTabs.MainTab>
-            </MainTabs>
+                </MainPromoTabs.MainPromoTab>
+            </MainPromoTabs> */}
         </>
     )
 }
