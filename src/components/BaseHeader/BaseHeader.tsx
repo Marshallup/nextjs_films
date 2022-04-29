@@ -1,6 +1,6 @@
 import React, { FC, useRef, useMemo, useState } from "react";
 import Link from "next/link";
-import MainContainer from "components/styledComponents/general/MainContainer";
+import MainContainer from "components/styles/general/MainContainer";
 import SearchIcon from 'components/Icons/SearchIcon';
 import useWindowSize from "src/hooks/useWindowSize";
 import {
@@ -22,7 +22,7 @@ import {
     MenuSearch,
     MainHeaderContent,
     LogoBigContainer,
-} from './BaseHeaderComponents';
+} from './style';
 import { getPropertyStyleEl } from "src/utils/helpers";
 const { motion, useTransform, useViewportScroll } = require("framer-motion");
 

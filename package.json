@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "nextjs_films",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,18 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@types/styled-components": "^5.1.25",
     "framer-motion": "^6.3.0",
     "next": "12.1.4",
     "react": "18.0.0",
     "react-dom": "18.0.0",
-    "react-scroll-motion": "^0.2.6",
     "styled-components": "^5.3.5"
   },
   "devDependencies": {
     "@types/node": "17.0.23",
     "@types/react": "17.0.43",
     "@types/react-dom": "17.0.14",
+    "@types/styled-components": "^5.1.25",
     "autoprefixer": "^10.4.4",
     "babel-plugin-styled-components": "^2.0.7",
     "eslint": "8.12.0",

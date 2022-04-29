@@ -9,14 +9,16 @@ const About: NextPage = () => {
 
     return (
         <>
-            {/* <MainPromoTabs activeID={1} onChange={onChangeTab}>
-                <MainPromoTabs.MainPromoTab id={1} name="name tab 1">
-                    tab1
-                </MainPromoTabs.MainPromoTab>
-                <MainPromoTabs.MainPromoTab id={2} name="name tab 2">
-                    tab23
-                </MainPromoTabs.MainPromoTab>
-            </MainPromoTabs> */}
+            <div className="card">
+                <h1 className="h1"></h1>
+                <div className="subtitle-h1">div</div>
+                <div className="subtitle">div</div>
+            </div>
+            <div className="card">
+                <h1 className="h1"></h1>
+                <div className="subtitle subtitle-h1">div</div>
+                <div className="subtitle">div</div>
+            </div>
         </>
     )
 }

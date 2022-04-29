@@ -14,7 +14,9 @@ const BaseLayout: FC = ({ children }) => {
             
             <BaseHeader />
 
-            <main>{ children }</main>
+            <main>
+                { children }
+            </main>
 
             <BaseFooter />
         </>

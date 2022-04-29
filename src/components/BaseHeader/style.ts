@@ -36,17 +36,6 @@ export const AnimateLogo = styled(motion.div).attrs(({ width }) => ({
     top: 0;
     z-index: 1;
 `;
-// export const AnimateLogo = styled(motion.div)<{ width: number }>`
-//     opacity: 0;
-//     position: absolute;
-//     transform-origin: top left;
-//     top: 0;
-//     z-index: 1;
-//     ${props => props.width && css`
-//         width: ${props.width}px;
-//     `}
-// `;
-
 export const MainHeader = styled.header`
     // margin-top: 32px;
     position: fixed;
