@@ -1,4 +1,5 @@
 import React, { useState, FC } from "react";
+import { MainPromoListProps } from "./interfaces";
 import MainContainer from "components/styles/general/MainContainer";
 import MainPromoTabs from "components/MainPromoTabs";
 import { MainButton } from 'components/styles/general/MainButtons';
@@ -6,16 +7,24 @@ import {
     Div,
     MainPromoSection,
     MainPromoContent,
-    MainPromoBody,
+    MainPromoAbout,
+    MainPromoDetails,
     MainPromoTitleBigFilm,
     MainPromoTitleSmallFilm,
     MainPromoContentFilmAbout,
     MainPromoAddInfoContent,
     MainPromoAddInfoContentDetail,
-    MainPromoTextFilmDescr,
-    MainPromoFilmFooter,
-    MainPromoKinopoiskRating,
+    MainPromoFilmFooterAbout,
+    MainPromoFilmFooterDetail,
+    MainPromoKinopoiskRatingAbout,
+    MainPromoKinopoiskRatingDetail,
     MainPromoContentFilmDetails,
+    MainPromoTextFilmDescrAbout,
+    MainPromoTextFilmDescrDetail,
+    MainPromoListItem,
+    MainPromoListTitle,
+    MainPromoList,
+    MainPromoListWrapper,
 } from './style';
 import FilmInfoList from "components/FilmInfoList";
 
@@ -40,12 +49,50 @@ const tabHeaderData = [
         title: 'Детали',
     }
 ];
-
+const filmListData = [
+    'Константин Лавроненко',
+    'Константин Лавроненко',
+    'Константин Лавроненко',
+    'Константин Лавроненко',
+    'Константин Лавроненко',
+    'Константин Лавроненко',
+]
 const transitionPromoBlock = {
     duration: 0.3,
 }
 const transitionPromoContent = {
     ...transitionPromoBlock,
+}
+
+const ListItem: FC = ({ children }) => {
+    return (
+        <MainPromoListItem>
+            { children }
+        </MainPromoListItem>
+    )
+}
+const List: FC<MainPromoListProps> = ({
+    title,
+    data,
+}) => {
+    return (
+        <MainPromoListWrapper>
+
+            <MainPromoListTitle>
+                { title }
+            </MainPromoListTitle>
+            <MainPromoList>
+                { data.map((item, idx) => {
+                    return (
+                        <ListItem key={`${item}-${idx}`}>
+                            { item }
+                        </ListItem>
+                    )
+                }) }
+            </MainPromoList>
+
+        </MainPromoListWrapper>
+    )
 }
 
 const MainPromo: FC = () => {
@@ -69,7 +116,16 @@ const MainPromo: FC = () => {
                 className={`main-section-first ${sectionClassActive}`}
             >
                 <MainPromoContent>
-                    <MainPromoBody>
+
+                    <MainPromoDetails>
+                        <List
+                            title={'В главных ролях'}
+                            data={filmListData}
+                        />
+                    </MainPromoDetails>
+
+                    <MainPromoAbout>
+
                         <MainPromoTabs
                             activeIdx={activeTabIdx}
                             headerData={tabHeaderData}
@@ -108,7 +164,7 @@ const MainPromo: FC = () => {
                                             filmLength={filmInfo.filmLength}
                                         />
                                     </MainPromoAddInfoContent>
-                                    <MainPromoTextFilmDescr
+                                    <MainPromoTextFilmDescrAbout
                                         animate={{
                                             y: !isDetailsFilm ? 0 : '50%',
                                             opacity: !isDetailsFilm ? 1 : 0
@@ -121,9 +177,9 @@ const MainPromo: FC = () => {
                                         Один из самых ожидаемых и амбициозных проектов последних лет, 
                                         новая версия культового фантастического романа Фрэнка Герберта 
                                         от автора «Прибытия» и «Пленниц», канадского визионера Дени Вильнева. 
-                                    </MainPromoTextFilmDescr>
+                                    </MainPromoTextFilmDescrAbout>
 
-                                    <MainPromoFilmFooter
+                                    <MainPromoFilmFooterAbout
                                         animate={{
                                             y: !isDetailsFilm ? 0 : '50%',
                                             opacity: !isDetailsFilm ? 1 : 0
@@ -136,10 +192,10 @@ const MainPromo: FC = () => {
                                         <MainButton>
                                             Смотреть трейлер
                                         </MainButton>
-                                        <MainPromoKinopoiskRating>
+                                        <MainPromoKinopoiskRatingAbout>
                                             7.9
-                                        </MainPromoKinopoiskRating>
-                                    </MainPromoFilmFooter>
+                                        </MainPromoKinopoiskRatingAbout>
+                                    </MainPromoFilmFooterAbout>
 
                                 </MainPromoContentFilmAbout>
 
@@ -159,6 +215,7 @@ const MainPromo: FC = () => {
                                     >
                                         Дюна
                                     </MainPromoTitleSmallFilm>
+
                                     <MainPromoAddInfoContentDetail
                                         animate={{
                                             y: isDetailsFilm ? 0 : '-50%',
@@ -175,14 +232,50 @@ const MainPromo: FC = () => {
                                             filmLength={filmInfo.filmLength}
                                         />
                                     </MainPromoAddInfoContentDetail>
+
+                                    <MainPromoTextFilmDescrDetail
+                                        animate={{
+                                            y: isDetailsFilm ? 0 : '-30%',
+                                            opacity: isDetailsFilm ? 1 : 0
+                                        }}
+                                        transition={{
+                                            ...transitionPromoBlock,
+                                            delay: 0.2
+                                        }}
+                                    >
+                                        Один из самых ожидаемых и амбициозных проектов последних лет, 
+                                        новая версия культового фантастического романа Фрэнка Герберта от автора 
+                                        «Прибытия» и «Пленниц», канадского визионера Дени Вильнева. 
+                                        Один из самых ожидаемых и амбициозных проектов последних лет, 
+                                        новая версия культового фантастического романа Фрэнка Герберта от 
+                                        автора «Прибытия» и «Пленниц», канадского визионера Дени Вильнева. 
+                                    </MainPromoTextFilmDescrDetail>
+
+                                    <MainPromoFilmFooterDetail
+                                        animate={{
+                                            y: isDetailsFilm ? 0 : '-50%',
+                                            opacity: isDetailsFilm ? 1 : 0
+                                        }}
+                                        transition={{
+                                            ...transitionPromoBlock,
+                                            delay: 0.4
+                                        }}
+                                    >
+                                        <MainPromoKinopoiskRatingDetail>
+                                            7.9
+                                        </MainPromoKinopoiskRatingDetail>
+                                    </MainPromoFilmFooterDetail>
+
                                 </MainPromoContentFilmDetails>
                                 
                             </>
                         </MainPromoTabs>
-                    </MainPromoBody>
+
+
+                    </MainPromoAbout>
+
                 </MainPromoContent>
             </MainPromoSection>
-
 
 
             <Div>

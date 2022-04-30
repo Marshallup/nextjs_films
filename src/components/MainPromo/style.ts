@@ -10,8 +10,12 @@ export const MainPromoContent = styled.div`
     display: flex;
     justify-content: flex-end;
 `;
-export const MainPromoBody = styled.div`
+export const MainPromoAbout = styled.div`
     flex-basis: 45%;
+`;
+export const MainPromoDetails = styled.div`
+    padding-top: 20rem;
+    flex: 1;
 `;
 export const MainPromoTabsItem = styled.li<{ active?: boolean }>`
     margin-right: 2rem;
@@ -99,12 +103,18 @@ export const MainPromoTitleSmallFilm = styled(MainPromoTitleFilm)`
     font-size: 6rem;
 `;
 export const MainPromoTextFilmDescr = styled(motion.div)`
-    margin-top: 1rem;
-    max-width: 50rem;
     line-height: 122%;
     color: ${COLORS.BASE_TEXT_GREY};
     font-weight: 400;
     font-size: ${FONT_SIZE.BASE_SIZE};
+`;
+export const MainPromoTextFilmDescrAbout = styled(MainPromoTextFilmDescr)`
+    margin-top: 1rem;
+    max-width: 50rem;
+`;
+export const MainPromoTextFilmDescrDetail = styled(MainPromoTextFilmDescr)`
+    margin-top: 3rem;
+    max-width: 51.1rem;
 `;
 export const MainPromoAddInfoContent = styled(motion.div)`
     display: flex;
@@ -116,11 +126,15 @@ export const MainPromoAddInfoContentDetail = styled(motion.div)`
 `;
 export const MainPromoFilmFooter = styled(motion.div)`
     display: flex;
+`;
+export const MainPromoFilmFooterAbout = styled(MainPromoFilmFooter)`
     margin-top: 15.6rem;
+`;
+export const MainPromoFilmFooterDetail = styled(MainPromoFilmFooter)`
+    margin-top: 5rem;
 `;
 export const MainPromoKinopoiskRating = styled.div`
     letter-spacing: 0.09em;
-    margin-left: 2.6rem;
     display: flex;
     align-items: center;
     font-size: ${FONT_SIZE.BIGGER_SIZE};
@@ -134,4 +148,22 @@ export const MainPromoKinopoiskRating = styled.div`
         height: 2.2rem;
         background: url(${kinopoiskLogo.src}) center center/contain no-repeat;
     }
+`;
+export const MainPromoKinopoiskRatingAbout = styled(MainPromoKinopoiskRating)`
+    margin-left: 2.6rem;
+`;
+export const MainPromoKinopoiskRatingDetail = styled(MainPromoKinopoiskRating)`
+
+`;
+export const MainPromoListItem = styled.li`
+
+`;
+export const MainPromoListTitle = styled.div`
+
+`;
+export const MainPromoList = styled.ul`
+
+`;
+export const MainPromoListWrapper = styled.div`
+
 `;
