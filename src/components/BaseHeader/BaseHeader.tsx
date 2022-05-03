@@ -5,7 +5,6 @@ import SearchIcon from 'components/Icons/SearchIcon';
 import useWindowSize from "src/hooks/useWindowSize";
 import {
     MainHeaderBodyWrapper,
-    MainHeaderTopSpace,
     MainHeader,
     MainHeaderBody,
     LogoContainer,
@@ -24,8 +23,26 @@ import {
     LogoBigContainer,
 } from './style';
 import { getPropertyStyleEl } from "src/utils/helpers";
-const { motion, useTransform, useViewportScroll } = require("framer-motion");
+const { useTransform, useViewportScroll } = require("framer-motion");
 
+const links = [
+    {
+        href: '/',
+        text: 'Подборки',
+    },
+    {
+        href: '/about',
+        text: 'О нас',
+    },
+    {
+        href: '/e',
+        text: 'Подборки',
+    },
+    {
+        href: '/q',
+        text: 'Подборки',
+    },
+];
 
 const BaseHeader: FC = () => {
     const [startShowLogo, setStartShowLogo] = useState(false);
@@ -80,24 +97,6 @@ const BaseHeader: FC = () => {
     }, [ size ]);
     const [maxScale, setMaxScale] = useState(1);
     const scale = useTransform(scrollY, offsetY, [maxScale, minScale]);
-    const links = [
-        {
-            href: '/',
-            text: 'Подборки',
-        },
-        {
-            href: '/about',
-            text: 'О нас',
-        },
-        {
-            href: '/e',
-            text: 'Подборки',
-        },
-        {
-            href: '/q',
-            text: 'Подборки',
-        },
-    ];
     const widthLogo = useMemo(() => {
         const { current } = refMenuLogoBigContainer;
         if (current) {
@@ -112,7 +111,6 @@ const BaseHeader: FC = () => {
     function toFixed3(num: number) {
         return +(num.toFixed(3));
     }
-
 
     return (
         <>

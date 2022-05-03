@@ -5,6 +5,7 @@ import MainPromoTabs from "components/MainPromoTabs";
 import { MainButton } from 'components/styles/general/MainButtons';
 import {
     Div,
+    MainPromoDetailsContent,
     MainPromoSection,
     MainPromoContent,
     MainPromoAbout,
@@ -25,6 +26,9 @@ import {
     MainPromoListTitle,
     MainPromoList,
     MainPromoListWrapper,
+    MainPromoContentAbout,
+    MainPromoContentDetail,
+    MainPromoContentHeader,
 } from './style';
 import FilmInfoList from "components/FilmInfoList";
 
@@ -50,12 +54,29 @@ const tabHeaderData = [
     }
 ];
 const filmListData = [
-    'Константин Лавроненко',
-    'Константин Лавроненко',
-    'Константин Лавроненко',
-    'Константин Лавроненко',
-    'Константин Лавроненко',
-    'Константин Лавроненко',
+    {
+        title: 'В главных ролях',
+        list: [
+            'Константин Лавроненко',
+            'Константин Лавроненко',
+            'Константин Лавроненко',
+            'Константин Лавроненко',
+            'Константин Лавроненко',
+            'Константин Лавроненко',
+        ]
+    },
+    {
+        title: 'Оригинальное название',
+        list: [
+            'Дюна',
+        ]
+    },
+    {
+        title: 'Режиссер',
+        list: [
+            'Константин Лавроненко',
+        ]
+    },
 ]
 const transitionPromoBlock = {
     duration: 0.3,
@@ -74,9 +95,16 @@ const ListItem: FC = ({ children }) => {
 const List: FC<MainPromoListProps> = ({
     title,
     data,
+    animate,
+    variants,
+    custom,
 }) => {
     return (
-        <MainPromoListWrapper>
+        <MainPromoListWrapper
+            custom={custom}
+            variants={variants}
+            animate={animate}
+        >
 
             <MainPromoListTitle>
                 { title }
@@ -84,7 +112,9 @@ const List: FC<MainPromoListProps> = ({
             <MainPromoList>
                 { data.map((item, idx) => {
                     return (
-                        <ListItem key={`${item}-${idx}`}>
+                        <ListItem
+                            key={`${item}-${idx}`}
+                        >
                             { item }
                         </ListItem>
                     )
@@ -115,166 +145,197 @@ const MainPromo: FC = () => {
             <MainPromoSection
                 className={`main-section-first ${sectionClassActive}`}
             >
-                <MainPromoContent>
+                
+                <MainContainer>
 
-                    <MainPromoDetails>
-                        <List
-                            title={'В главных ролях'}
-                            data={filmListData}
-                        />
-                    </MainPromoDetails>
+                    <MainPromoContentHeader>
+                        <MainPromoAbout>
+                            <MainPromoTabs
+                                activeIdx={activeTabIdx}
+                                headerData={tabHeaderData}
+                                onChangeTab={onChangeTab}
+                            />
+                        </MainPromoAbout>
+                    </MainPromoContentHeader>
 
-                    <MainPromoAbout>
+                    <MainPromoContentAbout
+                        animate={{
+                            display: !isDetailsFilm ? 'flex' : 'none',
+                        }}
+                        initial={false}
+                        transition={transitionPromoContent}
+                    >
 
-                        <MainPromoTabs
-                            activeIdx={activeTabIdx}
-                            headerData={tabHeaderData}
-                            onChangeTab={onChangeTab}
-                        >
-                            <>
-                                <MainPromoContentFilmAbout
+                        <MainPromoAbout>
+                            <MainPromoContentFilmAbout>
+                                <MainPromoTitleBigFilm
                                     animate={{
-                                        display: !isDetailsFilm ? 'block' : 'none',
+                                        y: !isDetailsFilm ? 0 : '20px',
+                                        opacity: !isDetailsFilm ? 1 : 0
                                     }}
-                                    initial={false}
-                                    transition={transitionPromoContent}
+                                    transition={transitionPromoBlock}
                                 >
-                                    <MainPromoTitleBigFilm
-                                        animate={{
-                                            y: !isDetailsFilm ? 0 : '20px',
-                                            opacity: !isDetailsFilm ? 1 : 0
-                                        }}
-                                        transition={transitionPromoBlock}
-                                    >
-                                        Дюна
-                                    </MainPromoTitleBigFilm>
-                                    <MainPromoAddInfoContent
-                                        animate={{
-                                            y: !isDetailsFilm ? 0 : '50%',
-                                            opacity: !isDetailsFilm ? 1 : 0
-                                        }}
-                                        transition={{
-                                            ...transitionPromoBlock,
-                                            delay: 0.1
-                                        }}
-                                    >
-                                        <FilmInfoList
-                                            list={filmInfo.list}
-                                            ageLimit={filmInfo.ageLimit}
-                                            filmLength={filmInfo.filmLength}
-                                        />
-                                    </MainPromoAddInfoContent>
-                                    <MainPromoTextFilmDescrAbout
-                                        animate={{
-                                            y: !isDetailsFilm ? 0 : '50%',
-                                            opacity: !isDetailsFilm ? 1 : 0
-                                        }}
-                                        transition={{
-                                            ...transitionPromoBlock,
-                                            delay: 0.2
-                                        }}
-                                    >
-                                        Один из самых ожидаемых и амбициозных проектов последних лет, 
-                                        новая версия культового фантастического романа Фрэнка Герберта 
-                                        от автора «Прибытия» и «Пленниц», канадского визионера Дени Вильнева. 
-                                    </MainPromoTextFilmDescrAbout>
-
-                                    <MainPromoFilmFooterAbout
-                                        animate={{
-                                            y: !isDetailsFilm ? 0 : '50%',
-                                            opacity: !isDetailsFilm ? 1 : 0
-                                        }}
-                                        transition={{
-                                            ...transitionPromoBlock,
-                                            delay: 0.3
-                                        }}
-                                    >
-                                        <MainButton>
-                                            Смотреть трейлер
-                                        </MainButton>
-                                        <MainPromoKinopoiskRatingAbout>
-                                            7.9
-                                        </MainPromoKinopoiskRatingAbout>
-                                    </MainPromoFilmFooterAbout>
-
-                                </MainPromoContentFilmAbout>
-
-                                <MainPromoContentFilmDetails
+                                    Дюна
+                                </MainPromoTitleBigFilm>
+                                <MainPromoAddInfoContent
                                     animate={{
-                                        display: isDetailsFilm ? 'block' : 'none',
+                                        y: !isDetailsFilm ? 0 : '50%',
+                                        opacity: !isDetailsFilm ? 1 : 0
                                     }}
-                                    initial={false}
-                                    transition={transitionPromoContent}
+                                    transition={{
+                                        ...transitionPromoBlock,
+                                        delay: 0.1
+                                    }}
                                 >
-                                    <MainPromoTitleSmallFilm
-                                        animate={{
-                                            y: isDetailsFilm ? 0 : '-20px',
-                                            opacity: isDetailsFilm ? 1 : 0
-                                        }}
-                                        transition={transitionPromoBlock}
-                                    >
-                                        Дюна
-                                    </MainPromoTitleSmallFilm>
+                                    <FilmInfoList
+                                        list={filmInfo.list}
+                                        ageLimit={filmInfo.ageLimit}
+                                        filmLength={filmInfo.filmLength}
+                                    />
+                                </MainPromoAddInfoContent>
+                                <MainPromoTextFilmDescrAbout
+                                    animate={{
+                                        y: !isDetailsFilm ? 0 : '50%',
+                                        opacity: !isDetailsFilm ? 1 : 0
+                                    }}
+                                    transition={{
+                                        ...transitionPromoBlock,
+                                        delay: 0.2
+                                    }}
+                                >
+                                    Один из самых ожидаемых и амбициозных проектов последних лет, 
+                                    новая версия культового фантастического романа Фрэнка Герберта 
+                                    от автора «Прибытия» и «Пленниц», канадского визионера Дени Вильнева. 
+                                </MainPromoTextFilmDescrAbout>
 
-                                    <MainPromoAddInfoContentDetail
-                                        animate={{
-                                            y: isDetailsFilm ? 0 : '-50%',
-                                            opacity: isDetailsFilm ? 1 : 0
-                                        }}
-                                        transition={{
-                                            ...transitionPromoBlock,
-                                            delay: 0.1
-                                        }}
-                                    >
-                                        <FilmInfoList
-                                            list={filmInfo.list}
-                                            ageLimit={filmInfo.ageLimit}
-                                            filmLength={filmInfo.filmLength}
+                                <MainPromoFilmFooterAbout
+                                    animate={{
+                                        y: !isDetailsFilm ? 0 : '50%',
+                                        opacity: !isDetailsFilm ? 1 : 0
+                                    }}
+                                    transition={{
+                                        ...transitionPromoBlock,
+                                        delay: 0.3
+                                    }}
+                                >
+                                    <MainButton>
+                                        Смотреть трейлер
+                                    </MainButton>
+                                    <MainPromoKinopoiskRatingAbout>
+                                        7.9
+                                    </MainPromoKinopoiskRatingAbout>
+                                </MainPromoFilmFooterAbout>
+
+                            </MainPromoContentFilmAbout>
+
+                        </MainPromoAbout>
+
+                    </MainPromoContentAbout>
+
+                    <MainPromoContentDetail
+                        animate={{
+                            display: isDetailsFilm ? 'flex' : 'none',
+                        }}
+                        initial={false}
+                        transition={transitionPromoContent}
+                    >
+                        <MainPromoDetails>
+
+                            <MainPromoDetailsContent>
+                                {
+                                    filmListData.map((listItem, listItemIdx) => (
+                                        <List
+                                            key={listItem.title}
+                                            title={listItem.title}
+                                            data={listItem.list}
+                                            custom={listItemIdx}
+                                            variants={{
+                                                visible: i => ({
+                                                    opacity: isDetailsFilm ? 1 : 0,
+                                                    y: isDetailsFilm ? 0 : '-15%',
+                                                    transition: {
+                                                    delay: i * 0.15,
+                                                    },
+                                                }),
+                                            }}
+                                            animate={'visible'}
                                         />
-                                    </MainPromoAddInfoContentDetail>
+                                    ))
+                                }
+                            </MainPromoDetailsContent>
 
-                                    <MainPromoTextFilmDescrDetail
-                                        animate={{
-                                            y: isDetailsFilm ? 0 : '-30%',
-                                            opacity: isDetailsFilm ? 1 : 0
-                                        }}
-                                        transition={{
-                                            ...transitionPromoBlock,
-                                            delay: 0.2
-                                        }}
-                                    >
-                                        Один из самых ожидаемых и амбициозных проектов последних лет, 
-                                        новая версия культового фантастического романа Фрэнка Герберта от автора 
-                                        «Прибытия» и «Пленниц», канадского визионера Дени Вильнева. 
-                                        Один из самых ожидаемых и амбициозных проектов последних лет, 
-                                        новая версия культового фантастического романа Фрэнка Герберта от 
-                                        автора «Прибытия» и «Пленниц», канадского визионера Дени Вильнева. 
-                                    </MainPromoTextFilmDescrDetail>
+                        </MainPromoDetails>
 
-                                    <MainPromoFilmFooterDetail
-                                        animate={{
-                                            y: isDetailsFilm ? 0 : '-50%',
-                                            opacity: isDetailsFilm ? 1 : 0
-                                        }}
-                                        transition={{
-                                            ...transitionPromoBlock,
-                                            delay: 0.4
-                                        }}
-                                    >
-                                        <MainPromoKinopoiskRatingDetail>
-                                            7.9
-                                        </MainPromoKinopoiskRatingDetail>
-                                    </MainPromoFilmFooterDetail>
+                        <MainPromoAbout>
+                            <MainPromoContentFilmDetails>
+                                <MainPromoTitleSmallFilm
+                                    animate={{
+                                        y: isDetailsFilm ? 0 : '-20px',
+                                        opacity: isDetailsFilm ? 1 : 0
+                                    }}
+                                    transition={transitionPromoBlock}
+                                >
+                                    Дюна
+                                </MainPromoTitleSmallFilm>
 
-                                </MainPromoContentFilmDetails>
-                                
-                            </>
-                        </MainPromoTabs>
+                                <MainPromoAddInfoContentDetail
+                                    animate={{
+                                        y: isDetailsFilm ? 0 : '-50%',
+                                        opacity: isDetailsFilm ? 1 : 0
+                                    }}
+                                    transition={{
+                                        ...transitionPromoBlock,
+                                        delay: 0.1
+                                    }}
+                                >
+                                    <FilmInfoList
+                                        list={filmInfo.list}
+                                        ageLimit={filmInfo.ageLimit}
+                                        filmLength={filmInfo.filmLength}
+                                    />
+                                </MainPromoAddInfoContentDetail>
 
+                                <MainPromoTextFilmDescrDetail
+                                    animate={{
+                                        y: isDetailsFilm ? 0 : '-30%',
+                                        opacity: isDetailsFilm ? 1 : 0
+                                    }}
+                                    transition={{
+                                        ...transitionPromoBlock,
+                                        delay: 0.2
+                                    }}
+                                >
+                                    Один из самых ожидаемых и амбициозных проектов последних лет, 
+                                    новая версия культового фантастического романа Фрэнка Герберта от автора 
+                                    «Прибытия» и «Пленниц», канадского визионера Дени Вильнева. 
+                                    Один из самых ожидаемых и амбициозных проектов последних лет, 
+                                    новая версия культового фантастического романа Фрэнка Герберта от 
+                                    автора «Прибытия» и «Пленниц», канадского визионера Дени Вильнева. 
+                                </MainPromoTextFilmDescrDetail>
 
-                    </MainPromoAbout>
+                                <MainPromoFilmFooterDetail
+                                    animate={{
+                                        y: isDetailsFilm ? 0 : '-50%',
+                                        opacity: isDetailsFilm ? 1 : 0
+                                    }}
+                                    transition={{
+                                        ...transitionPromoBlock,
+                                        delay: 0.4
+                                    }}
+                                >
+                                    <MainPromoKinopoiskRatingDetail>
+                                        7.9
+                                    </MainPromoKinopoiskRatingDetail>
+                                </MainPromoFilmFooterDetail>
 
-                </MainPromoContent>
+                            </MainPromoContentFilmDetails>
+
+                        </MainPromoAbout>
+
+                    </MainPromoContentDetail>
+
+                </MainContainer>
+
             </MainPromoSection>
 
 

@@ -5,10 +5,12 @@ import { COLORS, FONT_SIZE } from 'components/styles/variables';
 export const FilmInfoListWrapper = styled(motion.div)`
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 `;
 export const MainPromoTextList = styled.ul`
     display: flex;
     flex-wrap: wrap;
+    margin: 0 2.5rem 0.5rem 0;
 `;
 export const MainPromoTextItem = styled.li`
     font-weight: 700;
@@ -33,7 +35,7 @@ export const MainPromoTextItem = styled.li`
     }
 `;
 export const MainPromoTextAgeLimit = styled.div`
-    margin: 0 2.5rem;
+    margin: 0 2.5rem 0.5rem 0;
     padding: 0.4rem 1rem;
     display: inline-block;
     border-radius: 0.57rem;
@@ -44,6 +46,7 @@ export const MainPromoTextAgeLimit = styled.div`
 `;
 export const MainPromoTextFilmLength = styled.div`
     font-weight: 700;
+    margin-bottom: 0.5rem;
     font-size: ${FONT_SIZE.BIGGER_SIZE};
     color: ${COLORS.BASE_TEXT};
 `;
